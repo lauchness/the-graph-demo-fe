@@ -1,0 +1,11 @@
+query GetTickets {
+  tickets {
+    id
+    tokenPurchases {
+      id
+      amount
+      timestamp
+      owner
+    }
+  }
+}
