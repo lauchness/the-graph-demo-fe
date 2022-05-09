@@ -14,3 +14,14 @@ a {
 * {
   box-sizing: border-box;
 }
+
+hr {
+  width: 100%;
+  background: linear-gradient(to right, #e66465, #0070f3);
+  height: 2px;
+  border: none;
+}
+
+hr:last-of-type {
+  display: none;
+}
