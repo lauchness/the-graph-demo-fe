@@ -6,6 +6,8 @@ import { BigNumber } from "ethers";
 import { useGetTicketsQuery } from "../generated";
 import React from "react";
 
+const DENOMINATOR = BigNumber.from("1000000000000000000");
+
 const Home: NextPage = () => {
   const [{ data, fetching }] = useGetTicketsQuery();
   return (
@@ -31,14 +33,18 @@ const Home: NextPage = () => {
           {data?.tickets.length
             ? data.tickets.map((ticket) => (
                 <div key={ticket.id} className={styles.ticket}>
-                  <h3>Ticket ID: {ticket.id}</h3>
+                  <h3>
+                    Ticket #
+                    {BigNumber.from(ticket.id).div(DENOMINATOR).toString()}
+                  </h3>
+                  <h4>Token Purchases:</h4>
                   {ticket.tokenPurchases.map((tokenPurchase) => (
                     <React.Fragment key={tokenPurchase.id}>
                       <div className={styles.token_purchase}>
                         <span>
                           <strong>Amount</strong> -&nbsp;
                           {BigNumber.from(tokenPurchase.amount)
-                            .div(BigNumber.from("1000000000000000000"))
+                            .div(DENOMINATOR)
                             .toString()}{" "}
                           ETH
                         </span>
